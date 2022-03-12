@@ -9,8 +9,6 @@ using System.Web;
 /// </summary>
 namespace AddressBook
 {
-
-
     public class DatabaseConfig
     {
         public DatabaseConfig()
@@ -21,7 +19,5 @@ namespace AddressBook
         }
 
         public static string ConnectionString = ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString.ToString();
-
-
     }
 }

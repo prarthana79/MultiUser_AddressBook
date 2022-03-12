@@ -40,7 +40,8 @@ namespace AddressBook.DAL
         #endregion Delete City Operation
 
         #region Select Operations
-        //SelectAll
+
+        #region SelectAll cities
         DataTable SelectAll()
         {
             try
@@ -76,8 +77,14 @@ namespace AddressBook.DAL
 
             }
         }
-        //SelectByPK
-        //SelectForDropDownList
+        #endregion SelectAll cities
+
+        #region SelectByPK
+        #endregion SelectByPK
+
+        #region SelectForDropDownList
+        #endregion SelectForDropDownList
+
         #endregion Select Operations
     }
 }
