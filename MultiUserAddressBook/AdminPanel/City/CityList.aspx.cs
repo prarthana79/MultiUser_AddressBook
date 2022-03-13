@@ -44,19 +44,30 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
                 gvCity.DataSource = objSDR;
                 gvCity.DataBind();
             }
+            else
+            {
+                gvCity.DataSource = null;
+                gvCity.DataBind();
+            }
 
             #endregion Read the value and set the controls
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
+            #region Display Appropriate Message
             lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Fill Data
@@ -79,12 +90,16 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
         }
         catch (Exception ex)
         {
+            #region Display Appropriate Message
             lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Grid View
@@ -108,18 +123,24 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
             #endregion Set Connection & Command Object
             FillData();
             Response.Redirect("~/AdminPanel/City/List");
+
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
-            lblText.Text = ex.Message;
+            #region Display Appropriate Message
+            lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
-            FillData();
+            #endregion Close Connection
         }
     }
     #endregion Delete City

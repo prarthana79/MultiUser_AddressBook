@@ -18,29 +18,25 @@ public partial class AdminPanel_Contact_Contact : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            FillContactGridView();
+            FillData();
         }
     }
     #endregion Event : Page Load
 
     #region Fill Data
-    private void FillContactGridView()
+    private void FillData()
     {
-        
         SqlConnection objConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString);
 
         try
         {
-            #region Open Connection, Declare SqlCommand Objects, Set DDLFilter Values, Execute Reader, Fill Country GV & Close Connection
+            #region Set Connection & Command Object
             if (objConn.State != ConnectionState.Open)
                 objConn.Open();
 
-            SqlCommand objCmd = new SqlCommand();
-            objCmd.Connection = objConn;
+            SqlCommand objCmd = objConn.CreateCommand();
             objCmd.CommandType = CommandType.StoredProcedure;
-
-           
-            objCmd.CommandText = "[dbo].[PR_Contact_SelectByUserID]";
+            objCmd.CommandText = "PR_Contact_SelectByUserID";
             objCmd.Parameters.AddWithValue("@UserID", Session["UserID"]);
 
             SqlDataReader objSDR = objCmd.ExecuteReader();
@@ -55,92 +51,89 @@ public partial class AdminPanel_Contact_Contact : System.Web.UI.Page
                 gvContact.DataSource = null;
                 gvContact.DataBind();
             }
-            if (objConn.State != ConnectionState.Closed)
+            #endregion Set Connection & Command Object
+
+            #region Close Connection
+            if (objConn.State == ConnectionState.Open)
                 objConn.Close();
-            #endregion Open Connection, Declare SqlCommand Objects, Set DDLFilter Values, Execute Reader, Fill Country GV & Close Connection
+            #endregion Close Connection
+
         }
         catch (Exception ex)
         {
             #region  Display Appropriate Message
-            lblText.Text = "<strong>" + ex.Message + "</strong>";
-            lblText.ForeColor = System.Drawing.Color.Red;
+            lblText.Text = ex.Message;
             #endregion : Display Appropriate Message
         }
         finally
         {
             #region Close Connection
-            if (objConn.State != ConnectionState.Closed)
+            if (objConn.State == ConnectionState.Open)
                 objConn.Close();
             #endregion Close Connection
         }
     }
     #endregion Fill Data
 
-    #region Function : DeleteContact()
+    #region Delete Contact
     private void DeleteContact(SqlInt32 ContactID)
     {
-        #region Establish Connection And Set Connection String
         SqlConnection objConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString);
-        #endregion Establish Connection And Set Connection String
 
         try
         {
-            #region Open Connection, Create SqlCommand & Delete Record
+            #region Set Connection & Command Object
             if (objConn.State != ConnectionState.Open)
                 objConn.Open();
 
-            SqlCommand objCmd = new SqlCommand();
-            objCmd.Connection = objConn;
+            SqlCommand objCmd = objConn.CreateCommand();
             objCmd.CommandType = CommandType.StoredProcedure;
-            objCmd.CommandText = "[dbo].[PR_Contact_DeleteByUserID]";
+            objCmd.CommandText = "PR_Contact_DeleteByUserID";
             objCmd.Parameters.AddWithValue("@ContactID", ContactID.ToString());
             objCmd.Parameters.AddWithValue("@UserID", Session["UserID"]);
+            #endregion Set Connection & Command Object
+
             objCmd.ExecuteNonQuery();
 
-            if (objConn.State != ConnectionState.Closed)
+            #region Close Connection
+            if (objConn.State == ConnectionState.Open)
                 objConn.Close();
-            #endregion Open Connection, Create SqlCommand & FillGridView
+            #endregion Close Connection
 
-            #region Display Appropriate Msg
+            #region Display Appropriate Message
             lblText.Text = "<strong>Contact Deleted Successfully</strong>";
-            lblText.ForeColor = System.Drawing.Color.ForestGreen;
-            
-            #endregion Display Appropriate Msg
+            #endregion Display Appropriate Message
 
-            #region Fill THe GridView Again After Deleting The Record
-            FillContactGridView();
-            #endregion Fill THe GridView Again After Deleting The Record
+            #region Fill Data after deleting
+            FillData();
+            #endregion Fill Data after deleting
         }
         catch (Exception ex)
         {
-            #region Display Appropriate Msg
-            lblText.Text = "<strong>" + ex.Message + "</strong>";
-            lblText.ForeColor = System.Drawing.Color.Red;
-            
-            #endregion Display Appropriate Msg
+            #region Display Appropriate Message
+            lblText.Text = ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
             #region Close Connection
-            if (objConn.State != ConnectionState.Closed)
+            if (objConn.State == ConnectionState.Open)
                 objConn.Close();
             #endregion Close Connection
         }
     }
-    #endregion Function : DeleteContact()
+    #endregion Delete Contact
 
-    #region Function : DeleteFile()
+    #region Delete File
     private void DeleteFile(SqlInt32 ContactID)
     {
         String LogicalPath = "";
 
-        #region Establish Connection And Set Connection String
         SqlConnection objConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString);
-        #endregion Establish Connection And Set Connection String
 
         try
         {
-            #region Open Connection, Create SqlCommand & Delete Record
+            #region Set Connection & Command Object
             if (objConn.State != ConnectionState.Open)
                 objConn.Open();
 
@@ -160,10 +153,14 @@ public partial class AdminPanel_Contact_Contact : System.Web.UI.Page
                     LogicalPath = objSDR["ContactPhotoPath"].ToString();
                 }
             }
+            #endregion Set Connection & Command Object
 
-            if (objConn.State != ConnectionState.Closed)
+            #region Close Connection
+            if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
 
+            #region Delete from Directory
             String AbsolutePath = Server.MapPath(LogicalPath);
             FileInfo file = new FileInfo(AbsolutePath);
             lblText.Text = AbsolutePath + "----" + file.Exists;
@@ -179,77 +176,67 @@ public partial class AdminPanel_Contact_Contact : System.Web.UI.Page
             {
                 lblText.Text = "File Not Found";
             }
-
-
-
-            #endregion Open Connection, Create SqlCommand & FillGridView
+            #endregion Delete from Directory
         }
         catch (Exception ex)
         {
-            #region Display Appropriate Msg
-            lblText.Text = "<strong>" + ex.Message + "</strong>";
-            lblText.ForeColor = System.Drawing.Color.Red;
-            #endregion Display Appropriate Msg
+            #region Display Appropriate Message
+            lblText.Text = ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
             #region Close Connection
-            if (objConn.State != ConnectionState.Closed)
+            if (objConn.State == ConnectionState.Open)
                 objConn.Close();
             #endregion Close Connection
         }
     }
-    #endregion Function : DeleteFile()
+    #endregion Delete File
 
-    #region Function : DeleteRecordOfContactWiseContactCategory()
+    #region Delete Contact Wise ContactCategory
     private void DeleteRecordOfContactWiseContactCategory(SqlInt32 ContactID)
     {
         SqlConnection objConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString);
 
         try
         {
-            #region Open Connection, Create SqlCommand & Delete Record
+            #region Set Connection & Command Object
             if (objConn.State != ConnectionState.Open)
                 objConn.Open();
 
             SqlCommand objCmd = new SqlCommand();
             objCmd.Connection = objConn;
             objCmd.CommandType = CommandType.StoredProcedure;
-            objCmd.CommandText = "[dbo].[PR_ContactWiseContactCategory_DeleteByUserID]";
+            objCmd.CommandText = "PR_ContactWiseContactCategory_DeleteByUserID";
             objCmd.Parameters.AddWithValue("@ContactID", ContactID.ToString());
             if (Session["UserID"] != null)
                 objCmd.Parameters.AddWithValue("@UserID", Session["UserID"]);
             objCmd.ExecuteNonQuery();
-            if (objConn.State != ConnectionState.Closed)
+            #endregion Set Connection & Command Object
+
+            #region Close Connection
+            if (objConn.State == ConnectionState.Open)
                 objConn.Close();
-            #endregion Open Connection, Create SqlCommand & FillGridView
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
-            #region Display Appropriate Msg
-            lblText.Text = "<strong>" + ex.Message + "</strong>";
-            lblText.ForeColor = System.Drawing.Color.Red;
-            #endregion Display Appropriate Msg
+            #region Display Appropriate Message
+            lblText.Text = ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
             #region Close Connection
-            if (objConn.State != ConnectionState.Closed)
+            if (objConn.State == ConnectionState.Open)
                 objConn.Close();
             #endregion Close Connection
         }
     }
-    #endregion Function : DeleteRecordOfContactWiseContactCategory()
+    #endregion Delete Contact Wise ContactCategory
 
-
-    #region Event : ddlFilter_SelectedIndexChanged()
-    protected void ddlFilter_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        FillContactGridView();
-    }
-    #endregion Event : ddlFilter_SelectedIndexChanged()
-
-    #region Event : gvContact_RowCommand()
+    #region Grid View
     protected void gvContact_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         if (e.CommandName == "deleteRecord")
@@ -263,10 +250,9 @@ public partial class AdminPanel_Contact_Contact : System.Web.UI.Page
             }
         }
     }
-    #endregion Event : gvContact_RowCommand()
+    #endregion Grid View
 
     #region Bound data
-
     protected void gvContact_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
@@ -301,17 +287,24 @@ public partial class AdminPanel_Contact_Contact : System.Web.UI.Page
                 System.Drawing.Image data = System.Drawing.Image.FromFile(Server.MapPath(filePath));
                 e.Row.Cells[1].Text = "Size : || " + fi.Length / 1024 + " KB<br />Height : || " + data.Height + " pixels<br />Weight : || " + data.Width + " pixels<br />Type : || " + fi.Extension;
                 objSDR.Close();
+
+                #region Close Connection
                 if (objConn.State == ConnectionState.Open)
                     objConn.Close();
+                #endregion Close Connection
             }
             catch (Exception ex)
             {
+                #region Display Appropriate Message
                 lblText.Text = ex.Message;
+                #endregion Display Appropriate Message
             }
             finally
             {
+                #region Close Connection
                 if (objConn.State == ConnectionState.Open)
                     objConn.Close();
+                #endregion Close Connection
             }
         }
 

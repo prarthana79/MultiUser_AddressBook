@@ -36,6 +36,7 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
             if(Session["UserID"] != null)
                 objCmd.Parameters.AddWithValue("@UserID", Session["UserID"]);
             #endregion Set Connection & Command Object
+
             #region Read the value and set the controls
             SqlDataReader objSDR = objCmd.ExecuteReader();
             if (objSDR.HasRows)
@@ -43,18 +44,30 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
                 gvCountry.DataSource = objSDR;
                 gvCountry.DataBind();
             }
+            else
+            {
+                gvCountry.DataSource = null;
+                gvCountry.DataBind();
+            }
             #endregion Read the value and set the controls
+
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
-            lblText.Text = ex.Message;
+            #region Display Appropriate Message
+            lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Fill Data
@@ -74,15 +87,23 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
                 }
                 #endregion Delete Record
             }
+            #region Close Connection
+            if (objConn.State == ConnectionState.Open)
+                objConn.Close();
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
-            lblText.Text = ex.Message;
+            #region Display Appropriate Message
+            lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Grid View
@@ -104,20 +125,26 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
             objCmd.Parameters.AddWithValue("@CountryID", CountryID.ToString().Trim());
             objCmd.ExecuteNonQuery();
             #endregion Set Connection & Command Object
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
             //Response.Redirect("~/AdminPanel/Country/List");
             FillData();
             //lblText.Text += "CountryID" + CountryID;
         }
         catch (Exception ex)
         {
-            lblText.Text = ex.Message;
+            #region Display Appropriate Message
+            lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
             FillData();
         }
     }

@@ -46,17 +46,23 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
                 gvState.DataBind();
             }
             #endregion Read the value and set the controls
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
-            lblText.Text = ex.Message;
+            #region Display Appropriate Message
+            lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
 
     }
@@ -76,16 +82,25 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
                     DeleteState(Convert.ToInt32(e.CommandArgument.ToString().Trim()));
                 }
                 #endregion Delete Record
+
+                #region Close Connection
+                if (objConn.State == ConnectionState.Open)
+                    objConn.Close();
+                #endregion Close Connection
             }
         }
         catch (Exception ex)
         {
-            lblText.Text = ex.Message;
+            #region Display Appropriate Message
+            lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Grid View
@@ -107,21 +122,27 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
                 objCmd.Parameters.AddWithValue("@UserID", Session["UserID"]);
             objCmd.Parameters.AddWithValue("@StateID", StateID.ToString().Trim());
             objCmd.ExecuteNonQuery();
-            
+
             #endregion Set Connection & Command Object
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
-            
+            #endregion Close Connection
+
             FillData();
         }
         catch (Exception ex)
         {
-            lblText.Text = ex.Message;
+            #region Display Appropriate Message
+            lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
             FillData();
         }
     }
