@@ -128,7 +128,6 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
             #endregion Close Connection
-
             FillData();
         }
         catch (Exception ex)

@@ -83,7 +83,7 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
                 #region Delete Record
                 if (e.CommandArgument != "")
                 {
-                    DeleteState(Convert.ToInt32(e.CommandArgument.ToString().Trim()));
+                    DeleteCountry(Convert.ToInt32(e.CommandArgument.ToString().Trim()));
                 }
                 #endregion Delete Record
             }
@@ -108,8 +108,8 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
     }
     #endregion Grid View
 
-    #region Delete State
-    protected void DeleteState(SqlInt32 CountryID)
+    #region Delete Country
+    protected void DeleteCountry(SqlInt32 CountryID)
     {
         SqlConnection objConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString);
         try
@@ -129,7 +129,6 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
             #endregion Close Connection
-            //Response.Redirect("~/AdminPanel/Country/List");
             FillData();
             //lblText.Text += "CountryID" + CountryID;
         }
@@ -148,5 +147,5 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
             FillData();
         }
     }
-    #endregion Delete State
+    #endregion Delete Country
 }

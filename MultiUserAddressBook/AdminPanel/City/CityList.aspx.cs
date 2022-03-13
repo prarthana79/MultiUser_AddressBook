@@ -122,7 +122,6 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
             objCmd.ExecuteNonQuery();
             #endregion Set Connection & Command Object
             FillData();
-            Response.Redirect("~/AdminPanel/City/List");
 
             #region Close Connection
             if (objConn.State == ConnectionState.Open)
@@ -137,6 +136,7 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
         }
         finally
         {
+            FillData();
             #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
