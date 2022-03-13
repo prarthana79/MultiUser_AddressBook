@@ -18,8 +18,9 @@ public partial class SignUp : System.Web.UI.Page
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        String strErrorMessage = "";
+
         #region Local Variables
+        String strErrorMessage = "";
         SqlString strUserName = SqlString.Null;
         SqlString strPassword = SqlString.Null;
         SqlString strDisplayName = SqlString.Null;
@@ -78,17 +79,26 @@ public partial class SignUp : System.Web.UI.Page
             txtMobileNo.Text = "";
             txtUserName.Focus();
             #endregion Insert Record
+            
+            #region Close Connection
+            if (objConn.State == ConnectionState.Open)
+                objConn.Close();
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
             if (ex.Message.Equals ("Violation of UNIQUE KEY constraint 'IX_User'. Cannot insert duplicate key in object 'dbo.User'. The duplicate key value is (" + strUserName.ToString() + "). The statement has been terminated."))
                 lblText.Text = "Invalid UserName, Try something New";
-            lblText.Text = ex.Message;
+            #region Display Appropriate Message
+            lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
 

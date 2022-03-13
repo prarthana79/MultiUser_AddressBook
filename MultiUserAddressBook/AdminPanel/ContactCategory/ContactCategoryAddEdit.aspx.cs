@@ -11,7 +11,6 @@ using System.Web.UI.WebControls;
 
 public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
 {
-
     #region Load Event
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -85,17 +84,23 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
                 txtContactCategoryName.Focus();
                 #endregion Insert Record
             }
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
-            lblText.Text = ex.Message;
+            #region Display Appropriate Message
+            lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Button : Submit
@@ -135,17 +140,23 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
             else
                 lblText.Text = "No data available";
             #endregion Set Connection & Command Object
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
-            lblText.Text = ex.Message;
+            #region Display Appropriate Message
+            lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Fill Controls

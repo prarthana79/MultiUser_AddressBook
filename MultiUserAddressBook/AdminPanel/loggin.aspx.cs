@@ -77,17 +77,23 @@ public partial class AdminPanel_loggin : System.Web.UI.Page
                 if(lblMessage.Text.Trim()=="")
                     lblMessage.Text = "- Invalid UserName or Password";
             #endregion Read the value and set the controls
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
-            lblMessage.Text = ex.Message;
+            #region Display Appropriate Message
+            lblMessage.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
 

@@ -30,6 +30,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
     }
     #endregion Load Event
 
+    #region Fill DropDownList
     private void FillDropDownList()
     {
         CommonDropDownFillMethods.FillDropDownListContactCategory(ddlContactCategory);
@@ -38,6 +39,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
         CommonDropDownFillMethods.FillDropDownListState(ddlStateID, ddlCity, ddlCountryID);
         CommonDropDownFillMethods.FillDropDownListCountry(ddlCountryID);
     }
+    #endregion Fill DropDownList
 
     #region Fill Controls
     protected void FillControls(SqlInt32 ContactID)
@@ -135,16 +137,24 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
             else
                 lblText.Text = "No data available";
             #endregion Read the value and set the controls
+
+            #region Close Connection
+            if (objConn.State == ConnectionState.Open)
+                objConn.Close();
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
+            #region Display Appropriate Message
             lblText.Text = ex.Message;
-
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Fill Controls
@@ -270,7 +280,6 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
         #endregion Gather Information
 
         SqlConnection objConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString);
-
         try
         {
             #region Set Connection & Command Object
@@ -311,15 +320,16 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
 
             #endregion Set Connection & Command Object
 
-            
-
             if (Page.RouteData.Values["ContactId"] != null)
             {
                 #region Update Record
-               
-               if(fuFile.HasFile){
+
+                #region Delete OldPhoto Directory
+                if (fuFile.HasFile)
+                {
                     DeleteOldPhoto(Convert.ToInt32(System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["ContactID"].ToString().Trim()))));
-               }
+                }
+                #endregion Delete OldPhoto Directory
 
                 #region Delete ContactCategory
                 SqlCommand objCmdCBLDelelete = new SqlCommand();
@@ -358,8 +368,10 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
 
                 #endregion Update Record
 
+                #region Close Connection
                 if (objConn.State == ConnectionState.Open)
                     objConn.Close();
+                #endregion Close Connection
             }
             else
             {
@@ -423,19 +435,25 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
 
                 #endregion Insert Record
 
-                if (objConn.State == ConnectionState.Open)
-                    objConn.Close();
+            #region Close Connection
+            if (objConn.State == ConnectionState.Open)
+                objConn.Close();
+            #endregion Close Connection
             }
         }
         catch (Exception ex)
         {
-            lblMessage.Text += ex.Message;
+            #region Display Appropriate Message
+            lblText.Text = ex.Message;
+            #endregion Display Appropriate Message
         }
 
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Button : Submit
@@ -479,8 +497,11 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
             objCmd.Parameters.AddWithValue("@ContactID", ContactID);
             if (Session["UserID"] != null)
                 objCmd.Parameters.AddWithValue("@UserID", Session["UserID"]);
+            #endregion Set Connection & Command Object
+
             SqlDataReader objSDR = objCmd.ExecuteReader();
 
+            #region get LogicalPath
             if (objSDR.HasRows)
             {
                 while (objSDR.Read())
@@ -488,9 +509,12 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                     oldLogicalPath = objSDR["ContactPhotoPath"].ToString();
                 }
             }
+            #endregion get LogicalPath
 
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
 
             #region DeleteFromDirectory
             String AbsolutePath = Server.MapPath(oldLogicalPath);
@@ -507,18 +531,19 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                 lblMessage.Text = "File Not Found";
             }
             #endregion DeleteFromDirectory
-
-
-            #endregion Set Connection & Command Object
         }
         catch (Exception ex)
         {
-            lblMessage.Text += ex.Message;
+            #region Display Appropriate Message
+            lblText.Text = ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
-                    objConn.Close();
+                objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Delete Old Image
@@ -562,19 +587,24 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
             }
             #endregion Set Connection & Command Object
 
-
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
-            
+            #endregion Close Connection
+
         }
         catch (Exception ex)
         {
-            lblMessage.Text = ex.Message;
+            #region Display Appropriate Message
+            lblText.Text = ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
-                    objConn.Close();
+                objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Fill CheckBoxList Checked Items

@@ -11,7 +11,6 @@ using System.Web.UI.WebControls;
 
 public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
 {
-
     #region Load Event
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -31,14 +30,13 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
     }
     #endregion Load Event
 
+    #region Fill DropDownList
     protected void FillDropDownList()
     {
         CommonDropDownFillMethods.FillDropDownListState(ddlStateID, ddlCountryID);
         CommonDropDownFillMethods.FillDropDownListCountry(ddlCountryID);
-
     }
-
-
+    #endregion Fill DropDownList
 
     #region Button : Submit
     protected void btnSubmit_Click(object sender, EventArgs e)
@@ -117,17 +115,23 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
                 lblMessage.Text = "Data Inserted...!";
                 #endregion Insert Record
             }
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
+            #region Display Appropriate Message
             lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Button : Submit
@@ -186,17 +190,24 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
             else
                 lblText.Text = "No data available";
             #endregion Read the value and set the controls
+
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
         catch (Exception ex)
         {
-            lblText.Text = ex.Message;
+            #region Display Appropriate Message
+            lblText.Text += ex.Message;
+            #endregion Display Appropriate Message
         }
         finally
         {
+            #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
+            #endregion Close Connection
         }
     }
     #endregion Fill Controls
@@ -208,8 +219,10 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
     }
     #endregion Button : Cancel
 
+    #region FillState From CountryID change
     protected void ddlCountryID_SelectedIndexChanged(object sender, EventArgs e)
     {
         CommonDropDownFillMethods.FillDropDownListState(ddlStateID,ddlCountryID);
     }
+    #endregion FillState From CountryID change
 }
