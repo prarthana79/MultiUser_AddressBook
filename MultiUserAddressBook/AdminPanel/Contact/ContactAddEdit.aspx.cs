@@ -427,7 +427,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                 ddlCountryID.SelectedValue = "-1";
                 ddlStateID.SelectedValue = "-1";
                 ddlCity.SelectedValue = "-1";
-                ddlContactCategory.SelectedValue = "-1";
+                ddlContactCategory.ClearSelection();
                 ddlBloodGroup.SelectedValue = "-1";
                 #endregion Reset Data
 
@@ -435,10 +435,10 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
 
                 #endregion Insert Record
 
-            #region Close Connection
-            if (objConn.State == ConnectionState.Open)
-                objConn.Close();
-            #endregion Close Connection
+                #region Close Connection
+                if (objConn.State == ConnectionState.Open)
+                    objConn.Close();
+                #endregion Close Connection
             }
         }
         catch (Exception ex)
@@ -469,6 +469,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
     protected void ddlCountryID_SelectedIndexChanged(object sender, EventArgs e)
     {
         CommonDropDownFillMethods.FillDropDownListState(ddlStateID, ddlCity, ddlCountryID);
+        ddlStateID.Focus();
     }
     #endregion FillState From CountryID change
 
@@ -476,6 +477,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
     protected void ddlStateID_SelectedIndexChanged(object sender, EventArgs e)
     {
         CommonDropDownFillMethods.FillDropDownListCity(ddlCity, ddlStateID);
+        ddlCity.Focus();
     }
     #endregion FillCity From StateID change
 

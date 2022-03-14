@@ -50,6 +50,7 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
                 gvContactCategory.DataBind();
             }
             #endregion Read the value and set the controls
+            
             #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
