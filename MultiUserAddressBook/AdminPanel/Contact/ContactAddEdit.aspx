@@ -57,6 +57,7 @@
                 <div class="col-md-5 float-right ">
                 <asp:FileUpload runat="server" ID="fuFile" />
                 <asp:HiddenField ID="hfImagePath" runat="server" />
+                <asp:Image runat="server" ID="imgUrl" EnableViewState="false" />
             </div></div><br />
             <div class="row"><span>* </span>
                 <div class="col-md-4">

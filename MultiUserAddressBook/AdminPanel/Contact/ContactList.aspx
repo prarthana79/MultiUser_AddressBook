@@ -20,7 +20,7 @@
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:LinkButton runat="server" ID="lbImg" >
+                                <asp:LinkButton runat="server" ID="lbImg" OnClientClick="imgPop();return false" >
                                     <asp:Image runat="server" ID="imgContactPhotoPath" ClientIDMode="Static" ImageUrl='<%# Eval("ContactPhotoPath") %>' CommandArgument='<%# Eval("ContactPhotoPath") %>' Height="70" />
                                 </asp:LinkButton>
                             </ItemTemplate>
@@ -76,7 +76,7 @@
             //})
             Swal.fire({
                 title: 'Sweet!',
-                text: path1,
+                text: "",
                 imageUrl: 'https://unsplash.it/400/200',
                 imageWidth: 400,
                 imageHeight: 200,

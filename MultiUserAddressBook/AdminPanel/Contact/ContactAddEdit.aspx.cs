@@ -132,6 +132,10 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
 
                      //Change Made
                     hfImagePath.Value = objSDR["ContactPhotoPath"].ToString();
+                    imgUrl.EnableViewState = true;
+                    imgUrl.Height = 90;
+                    imgUrl.ImageUrl = objSDR["ContactPhotoPath"].ToString();
+
                     break;
                 }
             }
