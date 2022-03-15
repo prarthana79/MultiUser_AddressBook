@@ -310,4 +310,5 @@ public partial class AdminPanel_Contact_Contact : System.Web.UI.Page
 
     }
     #endregion Bound data
+
 }

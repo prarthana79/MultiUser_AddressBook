@@ -8,6 +8,10 @@
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="js/jquery-3.6.0.min.js" />
     <script src="~/Content/js/jquery-3.6.0.min.js"></script>
+    <%--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.css"
+        rel="stylesheet" type="text/css" />--%>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body{
             background-color:#C3CAD2;
@@ -18,6 +22,7 @@
     </style>
     <%--<script src="~/Content/js/bootstrap.min.js"></script>
     --%>
+<%--    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js" rel="stylesheet" type="text/css" />--%>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -41,7 +46,7 @@
                 <div class="col-md-12">
                 <div class="h3 text-light ml-5">
                     <asp:Label runat="server" SkinID="data" ID="lblUserName" /><br />
-                    <asp:LinkButton runat="server" CssClass="btn btn-primary" Text="LogOut" ID="lbtnLogOut" OnClick="lbtnLogOut_Click" />
+                    <asp:LinkButton runat="server" CssClass="btn btn-primary" Text="LogOut" ID="lbtnLogOut" OnClick="lbtnLogOut_Click" OnClientClick="loggedOut()" />
                 </div></div>
             </div>
         </div>
@@ -60,5 +65,25 @@
             </div><br /><br />
         </div>
     </form>
+    <script>
+        function loggedOut() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Loging out...<br>wait for few seconds'
+            })
+        }
+    </script>
 </body>
 </html>

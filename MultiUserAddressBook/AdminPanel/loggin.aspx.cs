@@ -71,6 +71,7 @@ public partial class AdminPanel_loggin : System.Web.UI.Page
                     
                     break;
                 }
+                System.Threading.Thread.Sleep(2000);
                 Response.Redirect("/Home", true);
             }
             else

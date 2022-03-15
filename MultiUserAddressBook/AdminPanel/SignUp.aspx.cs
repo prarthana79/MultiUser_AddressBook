@@ -71,24 +71,34 @@ public partial class SignUp : System.Web.UI.Page
             #region Insert Record
             objCmd.CommandText = "PR_User_Insert";
             objCmd.ExecuteNonQuery();
-            lblText.Text = "Data Inserted...!";
-            txtUserName.Text = "";
-            txtPassword.Text = "";
-            txtDisplayName.Text = "";
-            txtEmailID.Text = "";
-            txtMobileNo.Text = "";
-            txtUserName.Focus();
             #endregion Insert Record
-            
+            //#region reset data
+            //lblText.Text = "Data Inserted...!";
+            //txtUserName.Text = "";
+            //txtPassword.Text = "";
+            //txtDisplayName.Text = "";
+            //txtEmailID.Text = "";
+            //txtMobileNo.Text = "";
+            //txtUserName.Focus();
+            //#endregion reset data
+            System.Threading.Thread.Sleep(2000);
+            Response.Redirect("/LogIn", true);
+
+
             #region Close Connection
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
             #endregion Close Connection
         }
+        catch(SqlException sqlEx)
+        {
+            if(sqlEx.Number == 2627)
+            {
+                lblMessage.Text = "UserName already exists..";
+            }
+        }
         catch (Exception ex)
         {
-            if (ex.Message.Equals ("Violation of UNIQUE KEY constraint 'IX_User'. Cannot insert duplicate key in object 'dbo.User'. The duplicate key value is (" + strUserName.ToString() + "). The statement has been terminated."))
-                lblText.Text = "Invalid UserName, Try something New";
             #region Display Appropriate Message
             lblText.Text += ex.Message;
             #endregion Display Appropriate Message

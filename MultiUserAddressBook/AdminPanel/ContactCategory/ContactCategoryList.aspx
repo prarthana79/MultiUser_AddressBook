@@ -24,7 +24,7 @@
                         <asp:BoundField DataField="ModificationDate" HeaderText="Modification Date" />
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Button runat="server" ID="btnDelete" Text="Delete" SkinID="delete" CommandName="deleteRecord" CommandArgument='<%# Eval("ContactCategoryID").ToString() %>' />
+                                <asp:Button runat="server" ID="btnDelete" Text="Delete" SkinID="delete" CommandName="deleteRecord" OnClientClick="delete();return false" CommandArgument='<%# Eval("ContactCategoryID").ToString() %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
@@ -37,7 +37,11 @@
             </div>
             </div>
         </div>
-        
+        <script>
+            function delete(){
+                Swal.fire('Any fool can use a computer')
+            }
+        </script>
     </div>
 </asp:Content>
 

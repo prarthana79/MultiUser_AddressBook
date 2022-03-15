@@ -15,8 +15,10 @@ public partial class AdminPanel_Home : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //if (!Page.IsPostBack)
-            //FillData();
+        //FillData();
+        //this.ClientScript.RegisterStartupScript(this.GetType(), "SweetAlert", "swal('Oops!', 'Something went wrong on the page!', 'error');", true);
     }
+
     #endregion Load Event
 
     #region Fill Data

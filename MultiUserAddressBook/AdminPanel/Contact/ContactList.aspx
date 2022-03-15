@@ -20,7 +20,9 @@
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Image runat="server" ID="imgContactPhotoPath" ImageUrl='<%# Eval("ContactPhotoPath") %>' CommandArgument='<%# Eval("ContactPhotoPath") %>' Height="70" />
+                                <asp:LinkButton runat="server" ID="lbImg" >
+                                    <asp:Image runat="server" ID="imgContactPhotoPath" ClientIDMode="Static" ImageUrl='<%# Eval("ContactPhotoPath") %>' CommandArgument='<%# Eval("ContactPhotoPath") %>' Height="70" />
+                                </asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
@@ -62,5 +64,25 @@
                 </div>
         </div>
     </div>
+    <script>
+        <%--var path = document.getElementById("imgContactPhotoPath").imageUrl;--%>
+        var path1 = document.getElementById("#imgContactPhotoPath");
+        console.log(path1);
+        function imgPop() {
+            //Swal.fire({
+            //    imageUrl: path1,
+            //    imageHeight: 500,
+            //    imageAlt: 'An image'
+            //})
+            Swal.fire({
+                title: 'Sweet!',
+                text: path1,
+                imageUrl: 'https://unsplash.it/400/200',
+                imageWidth: 400,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+            })
+        }
+    </script>
 </asp:Content>
 

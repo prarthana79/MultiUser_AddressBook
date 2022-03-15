@@ -20,12 +20,12 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
             FillDropDownList();
             if (Page.RouteData.Values["ContactId"] != null)
             {
-                lblText.Text = "Edit mode | ContactID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["ContactId"].ToString()));
+                //lblText.Text = "Edit mode | ContactID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["ContactId"].ToString()));
                 FillControls(Convert.ToInt32(System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["ContactId"].ToString()))));
                 FillCheckedCBLContactCategoryID(Convert.ToInt32(System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["ContactId"].ToString()))));
             }
-            else
-                lblText.Text = "Add Mode";
+            //else
+                //lblText.Text = "Add Mode";
         }
     }
     #endregion Load Event
@@ -170,8 +170,8 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
             strErrorMessage += " - Select State <br />";
         if (ddlCity.SelectedIndex == 0)
             strErrorMessage += " - Select City <br />";
-        if (ddlContactCategory.Items.Count == 0)
-            strErrorMessage += " - Select Contact Category <br />";
+        if (ddlContactCategory.SelectedItem == null)
+            strErrorMessage += " - Select atleast one Contact Category <br />";
         if (ddlBloodGroup.SelectedIndex == 0)
             strErrorMessage += " - Select Blood Group <br />";
         if (txtContactName.Text.Trim() == "")

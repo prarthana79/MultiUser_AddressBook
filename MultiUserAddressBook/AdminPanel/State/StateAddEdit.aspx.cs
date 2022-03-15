@@ -19,12 +19,12 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
             FillDropDownList();
             if (Page.RouteData.Values["StateId"] != null)
             {
-                lblText.Text = "Edit mode | StateID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["StateId"].ToString()));
+                //lblText.Text = "Edit mode | StateID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["StateId"].ToString()));
                 FillControls(Convert.ToInt32(System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["StateId"].ToString()))));
             }
 
-            else
-                lblText.Text = "Add Mode";
+            //else
+                //lblText.Text = "Add Mode";
         }
     }
     #endregion Load Event
@@ -109,6 +109,13 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
             #endregion Close Connection
+        }
+        catch (SqlException sqlEx)
+        {
+            if (sqlEx.Number == 2627)
+            {
+                lblMessage.Text += "State already exists..";
+            }
         }
         catch (Exception ex)
         {

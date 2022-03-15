@@ -20,12 +20,12 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
             
             if (Page.RouteData.Values["CityId"] != null)
             {
-                lblText.Text = "Edit mode | CityID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["CityId"].ToString()));
+                //lblText.Text = "Edit mode | CityID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["CityId"].ToString()));
                 FillControls(Convert.ToInt32(System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["CityId"].ToString()))));
             }
 
-            else
-                lblText.Text = "Add Mode";
+            //else
+                //lblText.Text = "Add Mode";
         }
     }
     #endregion Load Event
@@ -46,13 +46,17 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
         SqlString strCityName = SqlString.Null;
         SqlString strSTDCode = SqlString.Null;
         SqlString strPinCode = SqlString.Null;
+        String strErrorMessage = "";
         #endregion Local Variables
 
-        String strErrorMessage = "";
+
         SqlConnection objConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString);
         try
         {
             #region Server Side Validation
+            if (ddlCountryID.SelectedIndex == 0)
+                strErrorMessage += " - Select Country <br />";
+
             if (ddlStateID.SelectedIndex == 0)
                 strErrorMessage += " - Select State <br />";
 
@@ -119,6 +123,13 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
             #endregion Close Connection
+        }
+        catch (SqlException sqlEx)
+        {
+            if (sqlEx.Number == 2627)
+            {
+                lblMessage.Text += "City already exists..";
+            }
         }
         catch (Exception ex)
         {
@@ -223,6 +234,7 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
     protected void ddlCountryID_SelectedIndexChanged(object sender, EventArgs e)
     {
         CommonDropDownFillMethods.FillDropDownListState(ddlStateID,ddlCountryID);
+        ddlStateID.Focus();
     }
     #endregion FillState From CountryID change
 }

@@ -11,6 +11,7 @@
             background-color:#C3CAD2;
         }
     </style>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -40,13 +41,32 @@
                         <asp:TextBox runat="server" CssClass="form-control" ID="txtPassword" TextMode="Password"></asp:TextBox>
                     </div></div><br />
                     <div class="col-md-10 offset-1">
-                        <asp:Button runat="server" ID="btnSubmit" Text="Log In" OnClick="btnSubmit_Click"></asp:Button>
+                        <asp:Button runat="server" ID="btnSubmit" Text="Log In" OnClick="btnSubmit_Click" OnClientClick="loggedIn()"></asp:Button>
                         <asp:Button runat="server" ID="btnSignUp" SkinID="cancel" Text="Sign Up" OnClick="btnSignUp_Click"></asp:Button>
                     </div>
                 </div>
             </div>
         
     </form>
+    <script>
+        function loggedIn() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
 
+            Toast.fire({
+                icon: 'success',
+                title: 'Loging in...<br>wait for few seconds'
+            })
+        }
+    </script>
 </body>
 </html>

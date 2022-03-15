@@ -39,6 +39,8 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
 
             #region Read the value and set the controls
             SqlDataReader objSDR = objCmd.ExecuteReader();
+            //this.ClientScript.RegisterStartupScript(this.GetType(), "SweetAlert", "swal('Oops!', 'Something went wrong on the page!', 'error');", true);
+            //System.Threading.Thread.Sleep(3000);
             if (objSDR.HasRows)
             {
                 gvContactCategory.DataSource = objSDR;
@@ -83,7 +85,7 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
                 #region Delete Record
                 if (e.CommandArgument != "")
                 {
-                    DeleteState(Convert.ToInt32(e.CommandArgument.ToString().Trim()));
+                    DeleteContactCategory(Convert.ToInt32(e.CommandArgument.ToString().Trim()));
                 }
                 #endregion Delete Record
             }
@@ -108,8 +110,8 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
     }
     #endregion Grid View
 
-    #region Delete State
-    protected void DeleteState(SqlInt32 ContactCategoryID)
+    #region Delete ContactCategory
+    protected void DeleteContactCategory(SqlInt32 ContactCategoryID)
     {
         SqlConnection objConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString);
         try
@@ -148,5 +150,5 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
             FillData();
         }
     }
-    #endregion Delete State
+    #endregion Delete ContactCategory
 }

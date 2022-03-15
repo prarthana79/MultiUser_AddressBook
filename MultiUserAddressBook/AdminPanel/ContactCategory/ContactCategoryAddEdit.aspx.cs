@@ -18,12 +18,12 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
         {
             if (Page.RouteData.Values["ContactCategoryID"] != null)
             {
-                lblText.Text = "Edit mode | ContactCategoryID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["ContactCategoryID"].ToString()));
+                //lblText.Text = "Edit mode | ContactCategoryID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["ContactCategoryID"].ToString()));
                 FillControls(Convert.ToInt32(System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["ContactCategoryID"].ToString()))));
             }
 
-            else
-                lblText.Text = "Add Mode";
+            //else
+                //lblText.Text = "Add Mode";
         }
     }
     #endregion Load Event
@@ -88,6 +88,13 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
             #endregion Close Connection
+        }
+        catch (SqlException sqlEx)
+        {
+            if (sqlEx.Number == 2627)
+            {
+                lblMessage.Text += "Contact category already exists..";
+            }
         }
         catch (Exception ex)
         {

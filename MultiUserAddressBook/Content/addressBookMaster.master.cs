@@ -20,7 +20,9 @@ public partial class Content_addressBookMaster : System.Web.UI.MasterPage
 
     protected void lbtnLogOut_Click(object sender, EventArgs e)
     {
+        System.Threading.Thread.Sleep(2000);
         Session.Clear();
+        
         Response.Redirect("/LogIn", true);
     }
 }
