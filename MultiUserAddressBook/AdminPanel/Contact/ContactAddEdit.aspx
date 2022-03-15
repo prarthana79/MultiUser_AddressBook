@@ -41,7 +41,7 @@
                     Contact Category
                 </div>
                 <div class="col-md-5 float-right dropdown">
-                <asp:CheckBoxList runat="server" CssClass="dropdown dropdown-item" ID="ddlContactCategory"></asp:CheckBoxList>
+                <asp:CheckBoxList runat="server" CssClass="dropdown dropdown-item" ID="cblContactCategory"></asp:CheckBoxList>
             </div></div><br />
             <div class="row"><span>* </span>
                 <div class="col-md-4">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-md-5 float-right ">
                 <asp:TextBox runat="server" placeHolder="Enter WhatsApp Number" ID="txtWhatsAppNo" TextMode="Number"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="revWhatsAppNo" runat="server" CssClass="h6" ControlToValidate="txtWhatsAppNo" Display="Dynamic" ValidationGroup="submitData" ErrorMessage="Not A Valid Mobile Number" ForeColor="Red" ValidationExpression="^\d{10}$"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="revWhatsAppNo" runat="server" CssClass="h6" ControlToValidate="txtWhatsAppNo" Display="Dynamic" ValidationGroup="submitData" ErrorMessage="Not A Valid Mobile Number<br/>(should contain 10 digits)" ForeColor="Red" ValidationExpression="^\d{10}$"></asp:RegularExpressionValidator>
             </div></div><br />
             <div class="row"><span>* </span>
                 <div class="col-md-4">

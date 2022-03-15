@@ -16,6 +16,7 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            ddlCountryID.Focus();
             FillDropDownList();
             if (Page.RouteData.Values["StateId"] != null)
             {

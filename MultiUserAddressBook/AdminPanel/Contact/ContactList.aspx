@@ -33,9 +33,9 @@
                         <asp:BoundField DataField="ContactID" HeaderText="ID" />
                         <asp:BoundField DataField="ContactName" HeaderText="Name" />
                         <%--<asp:BoundField DataField="ContactPhotoPath" HeaderText="ImagePath" />--%>
-                        <asp:BoundField DataField="CityName" HeaderText="City" />
-                        <asp:BoundField DataField="StateName" HeaderText="State" />
                         <asp:BoundField DataField="CountryName" HeaderText="Country" />
+                        <asp:BoundField DataField="StateName" HeaderText="State" />
+                        <asp:BoundField DataField="CityName" HeaderText="City" />
                         <asp:BoundField DataField="ContactNo" HeaderText="Contact No" />
                         <asp:BoundField DataField="WhatsAppNo" HeaderText="WhatsApp No" />
                         <asp:BoundField DataField="BirthDate" HeaderText="BirthDate" DataFormatString="{0:MM/dd/yyyy}" />

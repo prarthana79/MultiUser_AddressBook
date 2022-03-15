@@ -14,7 +14,7 @@ public partial class AdminPanel_loggin : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        txtUserName.Focus();
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)

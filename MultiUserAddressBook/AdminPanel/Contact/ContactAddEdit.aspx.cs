@@ -18,6 +18,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             FillDropDownList();
+            ddlCountryID.Focus();
             if (Page.RouteData.Values["ContactId"] != null)
             {
                 //lblText.Text = "Edit mode | ContactID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["ContactId"].ToString()));
@@ -33,7 +34,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
     #region Fill DropDownList
     private void FillDropDownList()
     {
-        CommonDropDownFillMethods.FillDropDownListContactCategory(ddlContactCategory);
+        CommonDropDownFillMethods.FillDropDownListContactCategory(cblContactCategory);
         CommonDropDownFillMethods.FillDropDownListBloodGroup(ddlBloodGroup, ddlStateID, ddlCity);
         CommonDropDownFillMethods.FillDropDownListCity(ddlCity, ddlStateID);
         CommonDropDownFillMethods.FillDropDownListState(ddlStateID, ddlCity, ddlCountryID);
@@ -81,7 +82,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                     }
                     //if (!objSDR["ContactCategoryID"].Equals(DBNull.Value))
                     //{
-                    //    ddlContactCategory.SelectedValue = objSDR["ContactCategoryID"].ToString().Trim();
+                    //    cblContactCategory.SelectedValue = objSDR["ContactCategoryID"].ToString().Trim();
                     //}
                     if (!objSDR["BloodGroupID"].Equals(DBNull.Value))
                     {
@@ -170,7 +171,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
             strErrorMessage += " - Select State <br />";
         if (ddlCity.SelectedIndex == 0)
             strErrorMessage += " - Select City <br />";
-        if (ddlContactCategory.SelectedItem == null)
+        if (cblContactCategory.SelectedItem == null)
             strErrorMessage += " - Select atleast one Contact Category <br />";
         if (ddlBloodGroup.SelectedIndex == 0)
             strErrorMessage += " - Select Blood Group <br />";
@@ -259,8 +260,8 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
             strStateID = Convert.ToInt32(ddlStateID.SelectedValue);
         if (ddlCity.SelectedIndex > 0)
             strCityID = Convert.ToInt32(ddlCity.SelectedValue);
-        if (ddlContactCategory.SelectedIndex > 0)
-            strContactCategoryID = Convert.ToInt32(ddlContactCategory.SelectedValue);
+        if (cblContactCategory.SelectedIndex > 0)
+            strContactCategoryID = Convert.ToInt32(cblContactCategory.SelectedValue);
         if (ddlBloodGroup.SelectedIndex > 0)
             strBloodGroupID = Convert.ToInt32(ddlBloodGroup.SelectedValue);
         if (txtContactName.Text.Trim() != "")
@@ -278,6 +279,11 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
         strFaceBookID = txtFacebookID.Text.Trim();
         strLinkedInID = txtLinkedInID.Text.Trim();
         #endregion Gather Information
+
+        if (strAge == "")
+        {
+            strAge = (DateTime.Now.Year - ((DateTime)dtBirthDate).Year).ToString();
+        }
 
         SqlConnection objConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString);
         try
@@ -343,7 +349,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                 #endregion Delete ContactCategory
 
                 #region Insert ContactCategory
-                foreach (ListItem liContactCategoryID in ddlContactCategory.Items)
+                foreach (ListItem liContactCategoryID in cblContactCategory.Items)
                 {
                     if (liContactCategoryID.Selected)
                     {
@@ -395,7 +401,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                 ContactID = Convert.ToInt32(objCmd.Parameters["@ContactID"].Value);
 
                 #region Insert ContactCategory
-                foreach (ListItem liContactCategoryID in ddlContactCategory.Items)
+                foreach (ListItem liContactCategoryID in cblContactCategory.Items)
                 {
                     if (liContactCategoryID.Selected)
                     {
@@ -427,7 +433,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                 ddlCountryID.SelectedValue = "-1";
                 ddlStateID.SelectedValue = "-1";
                 ddlCity.SelectedValue = "-1";
-                ddlContactCategory.ClearSelection();
+                cblContactCategory.ClearSelection();
                 ddlBloodGroup.SelectedValue = "-1";
                 #endregion Reset Data
 
@@ -573,7 +579,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
             {
                 while (objSDR.Read())
                 {
-                    foreach (ListItem li in ddlContactCategory.Items)
+                    foreach (ListItem li in cblContactCategory.Items)
                     {
                         if (objSDR["ContactCategoryId"].ToString() == li.Value)
                         {

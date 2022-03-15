@@ -17,7 +17,7 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             FillDropDownList();
-            
+            ddlCountryID.Focus();
             if (Page.RouteData.Values["CityId"] != null)
             {
                 //lblText.Text = "Edit mode | CityID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["CityId"].ToString()));

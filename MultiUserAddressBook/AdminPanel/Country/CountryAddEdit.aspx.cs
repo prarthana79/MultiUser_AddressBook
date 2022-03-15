@@ -16,6 +16,7 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            txtCountryName.Focus();
             if (Page.RouteData.Values["CountryID"] != null)
             {
                 //lblText.Text = "Edit mode | CountryID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["CountryID"].ToString()));

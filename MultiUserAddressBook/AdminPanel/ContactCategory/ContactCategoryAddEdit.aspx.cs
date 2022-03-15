@@ -16,6 +16,7 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            txtContactCategoryName.Focus();
             if (Page.RouteData.Values["ContactCategoryID"] != null)
             {
                 //lblText.Text = "Edit mode | ContactCategoryID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["ContactCategoryID"].ToString()));
