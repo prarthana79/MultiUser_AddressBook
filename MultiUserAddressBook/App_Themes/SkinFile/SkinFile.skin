@@ -13,7 +13,7 @@ Default skin template. The following skins are provided as examples only.
 
 <asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
 --%>
-<asp:Label runat="server" CssClass="h4 text-danger font-italic"></asp:Label>
+<asp:Label runat="server" CssClass="h4 font-italic"></asp:Label>
 <asp:Label runat="server" CssClass="h4 text-light font-italic" SkinID="data"></asp:Label>
 <asp:TextBox runat="server" CssClass="text-body form-control"></asp:TextBox>
 <asp:Button runat="server" CssClass="btn btn-dark btn-lg"></asp:Button>

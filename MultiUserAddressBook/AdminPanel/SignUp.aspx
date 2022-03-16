@@ -71,10 +71,11 @@
                 <asp:TextBox runat="server" placeholder="Enter Mobile Number" ID="txtMobileNo" TextMode="Number"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="revContactNo" runat="server" CssClass="h6" ControlToValidate="txtMobileNo" Display="Dynamic" ValidationGroup="submitData" ErrorMessage="Not A Valid Mobile Number<br/>(should contain 10 digits)" ForeColor="Red" ValidationExpression="^\d{10}$"></asp:RegularExpressionValidator>
             </div></div><br />
-            <div class="col-md-4 offset-2">
+            <div class="row text-center">
+                <div class="col-md-8">
                 <asp:Button runat="server" ID="btnSubmit" Text="Create User" OnClick="btnSubmit_Click" ValidationGroup="submitData" OnClientClick="accountCreated()"></asp:Button>
                 <asp:Button runat="server" ID="btnCancel" Text="Cancel" SkinID="Cancel" OnClick="btnCancel_Click"></asp:Button>
-            </div>
+            </div></div>
         </div></div>
         </div>
     </form>

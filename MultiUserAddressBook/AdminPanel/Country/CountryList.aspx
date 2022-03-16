@@ -5,12 +5,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid">
         <div class="row text-justify">
-            <p class="h1 offset-1">Country :</p>
+            <%--<p class="h1 offset-1">Country :</p>--%>
             <asp:Label runat="server" ID="lblText" EnableViewState="false" />
         </div>
         <div class="row text-justify">
             <div class="offset-1">
-                <asp:HyperLink runat="server" CssClass="btn btn-warning btn-lg" NavigateUrl="~/AdminPanel/Country/Add">Add</asp:HyperLink>
+                <asp:HyperLink runat="server" CssClass="btn btn-warning btn-lg" NavigateUrl="~/AdminPanel/Country/Add">Add Country</asp:HyperLink>
             </div>
         </div>
         <div class="row">
@@ -22,7 +22,7 @@
                         <asp:BoundField DataField="CountryName" HeaderText="Country" />
                         <asp:BoundField DataField="CountryCode" HeaderText="Code" />
                         <asp:BoundField DataField="CreationDate" HeaderText="Creation Date" />
-                        <asp:BoundField DataField="ModificationDate" HeaderText="Modification Date" />
+                        <%--<asp:BoundField DataField="ModificationDate" HeaderText="Modification Date" />--%>
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:Button runat="server" ID="btnDelete" Text="Delete" SkinID="delete" CommandName="deleteRecord" CommandArgument='<%# Eval("CountryID").ToString() %>' />

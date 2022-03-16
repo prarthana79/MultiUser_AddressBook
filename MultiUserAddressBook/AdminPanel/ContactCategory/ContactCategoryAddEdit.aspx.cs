@@ -21,6 +21,7 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
             {
                 //lblText.Text = "Edit mode | ContactCategoryID = " + System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["ContactCategoryID"].ToString()));
                 FillControls(Convert.ToInt32(System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(Page.RouteData.Values["ContactCategoryID"].ToString()))));
+
             }
 
             //else
@@ -80,6 +81,7 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
                 #region Insert Record
                 objCmd.CommandText = "PR_ContactCategory_InsertUserID";
                 objCmd.ExecuteNonQuery();
+                lblMessage.Attributes.CssStyle.Add("color", "green");
                 lblMessage.Text = "Data Inserted...!";
                 txtContactCategoryName.Text = "";
                 txtContactCategoryName.Focus();

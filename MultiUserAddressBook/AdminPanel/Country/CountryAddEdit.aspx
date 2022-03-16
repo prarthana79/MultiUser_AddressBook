@@ -29,10 +29,11 @@
                 <asp:TextBox runat="server" placeHolder="Enter Country Code" CssClass="form-control" ID="txtCountryCode"></asp:TextBox>
             </div></div><br />
 
-            <div class="col-md-10 offset-1">
+            <div class="row text-center">
+                <div class="col-md-8">
                 <asp:Button runat="server" ID="btnSubmit" Text="Save" OnClick="btnSubmit_Click"></asp:Button>
                 <asp:Button runat="server" ID="btnCancel" SkinID="cancel" Text="Cancel" OnClick="btnCancel_Click"></asp:Button>
-            </div>
+            </div></div>
         </div>
     </div>
 </asp:Content>

@@ -5,12 +5,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid">
         <div class="row text-justify">
-            <p class="h1 offset-1">Contact Category :</p>
+            <%--<p class="h1 offset-1">Contact Category :</p>--%>
             <asp:Label runat="server" ID="lblText" EnableViewState="false" />
         </div>
         <div class="row text-justify">
             <div class="offset-1">
-                <asp:HyperLink runat="server" CssClass="btn btn-warning btn-lg" NavigateUrl="~/AdminPanel/ContactCategory/Add">Add</asp:HyperLink>
+                <asp:HyperLink runat="server" CssClass="btn btn-warning btn-lg" NavigateUrl="~/AdminPanel/ContactCategory/Add">Add Contact Category</asp:HyperLink>
             </div>
         </div>
         <div class="row"><div class="col-md-12">
@@ -21,10 +21,10 @@
                         <asp:BoundField DataField="ContactCategoryID" HeaderText="ID" />
                         <asp:BoundField DataField="ContactCategoryName" HeaderText="Category" />
                         <asp:BoundField DataField="CreationDate" HeaderText="Creation Date" />
-                        <asp:BoundField DataField="ModificationDate" HeaderText="Modification Date" />
+                        <%--<asp:BoundField DataField="ModificationDate" HeaderText="Modification Date" />--%>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Button runat="server" ID="btnDelete" Text="Delete" SkinID="delete" CommandName="deleteRecord" OnClientClick="delete();return false" CommandArgument='<%# Eval("ContactCategoryID").ToString() %>' />
+                                <asp:Button runat="server" ID="btnDelete" Text="Delete" SkinID="delete" CommandName="deleteRecord" CommandArgument='<%# Eval("ContactCategoryID").ToString() %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
@@ -38,9 +38,44 @@
             </div>
         </div>
         <script>
-            function delete(){
-                Swal.fire('Any fool can use a computer')
-            }
+            
+            //function deleteCC() {
+                // OnClientClick="deleteCC(); return false"
+                //const swalWithBootstrapButtons = Swal.mixin({
+                //    customClass: {
+                //        confirmButton: 'btn btn-success',
+                //        cancelButton: 'btn btn-danger'
+                //    },
+                //    buttonsStyling: false
+                //})
+
+                //swalWithBootstrapButtons.fire({
+                //    title: 'Are you sure?',
+                //    text: "You won't be able to revert this!",
+                //    icon: 'warning',
+                //    showCancelButton: true,
+                //    confirmButtonText: 'Yes, delete it!',
+                //    cancelButtonText: 'No, cancel!',
+                //    reverseButtons: true
+                //}).then((result) => {
+                //    if (result.isConfirmed) {
+                //        swalWithBootstrapButtons.fire(
+                //            'Deleted!',
+                //            'Your file has been deleted.',
+                //            'success'
+                //        )
+                //    } else if (
+                //        /* Read more about handling dismissals below */
+                //        result.dismiss === Swal.DismissReason.cancel
+                //    ) {
+                //        swalWithBootstrapButtons.fire(
+                //            'Cancelled',
+                //            'Your imaginary file is safe :)',
+                //            'error'
+                //        )
+                //    }
+                //})
+            //}
         </script>
     </div>
 </asp:Content>

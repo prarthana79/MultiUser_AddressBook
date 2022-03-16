@@ -14,7 +14,7 @@ public partial class Content_addressBookMaster : System.Web.UI.MasterPage
         if (!Page.IsPostBack)
         {
             if (Session["DisplayName"] != null)
-                lblUserName.Text = "Hello ! <br />" + Session["DisplayName"] + "!";
+                lblUserName.Text = "<u>Hello ! " + Session["DisplayName"] + "!</u>";
         }
     }
 

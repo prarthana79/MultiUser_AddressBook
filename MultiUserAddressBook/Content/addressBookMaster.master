@@ -8,9 +8,6 @@
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="js/jquery-3.6.0.min.js" />
     <script src="~/Content/js/jquery-3.6.0.min.js"></script>
-    <%--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.css"
-        rel="stylesheet" type="text/css" />--%>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body{
@@ -19,10 +16,10 @@
         span{
             color:red;
         }
+        .span1{
+            color:green;
+        }
     </style>
-    <%--<script src="~/Content/js/bootstrap.min.js"></script>
-    --%>
-<%--    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js" rel="stylesheet" type="text/css" />--%>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -33,20 +30,22 @@
                 <div class="text-center col-md-12 p-3 pb-4">
                     <h1 class="display-3 font-italic text-light font-weight-bolder"><u>ADDRESS BOOK</u></h1>
                 </div>
-                <div class="text-light text-center col-md-12 pb-3 h3">
+                <div class="text-light text-center col-md-9 pb-3 h3 float-left">
                     <asp:HyperLink runat="server" ID="hlHome" NavigateUrl="~/Home" ForeColor="#F8F9FA">Home</asp:HyperLink>&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;
                     <asp:HyperLink runat="server" ID="hlCountry" NavigateUrl="~/AdminPanel/Country/List" ForeColor="#F8F9FA">Country</asp:HyperLink>&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;
                     <asp:HyperLink runat="server" ID="hlState" NavigateUrl="~/AdminPanel/State/List" ForeColor="#F8F9FA">State</asp:HyperLink>&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;
                     <asp:HyperLink runat="server" ID="hlCity" NavigateUrl="~/AdminPanel/City/List" ForeColor="#F8F9FA">City</asp:HyperLink>&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;
                     <asp:HyperLink runat="server" ID="hlContactCategory" NavigateUrl="~/AdminPanel/ContactCategory/List" ForeColor="#F8F9FA">Contact Category</asp:HyperLink>&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; 
                     <asp:HyperLink runat="server" ID="hlContact" NavigateUrl="~/AdminPanel/Contact/List" ForeColor="#F8F9FA">Contact</asp:HyperLink>
+                    </div><div class="text-light col-md-3 pb-3 h3 float-right">
+                    <asp:Label runat="server" SkinID="data" ID="lblUserName" /><br />
+                    <asp:LinkButton runat="server" CssClass="btn btn-primary float-right mr-5 mt-3" Text="LogOut" ID="lbtnLogOut" OnClick="lbtnLogOut_Click" OnClientClick="loggedOut()" />
                 </div>
             <br />
             <div class="row">
                 <div class="col-md-12">
                 <div class="h3 text-light ml-5">
-                    <asp:Label runat="server" SkinID="data" ID="lblUserName" /><br />
-                    <asp:LinkButton runat="server" CssClass="btn btn-primary" Text="LogOut" ID="lbtnLogOut" OnClick="lbtnLogOut_Click" OnClientClick="loggedOut()" />
+                    
                 </div></div>
             </div>
         </div>

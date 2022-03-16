@@ -5,12 +5,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid">
         <div class="row text-justify">
-            <p class="h1 offset-1">Contact :</p>
+            <%--<p class="h1 offset-1">Contact :</p>--%>
             <asp:Label runat="server" ID="lblText" EnableViewState="false" />
         </div>
         <div class="row text-justify">
             <div class="offset-1">
-                <asp:HyperLink runat="server" CssClass="btn btn-warning btn-lg" NavigateUrl="~/AdminPanel/Contact/Add">Add</asp:HyperLink>
+                <asp:HyperLink runat="server" CssClass="btn btn-warning btn-lg" NavigateUrl="~/AdminPanel/Contact/Add">Add Contact</asp:HyperLink>
             </div>
         </div>
         <div class="row">
@@ -20,9 +20,10 @@
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:LinkButton runat="server" ID="lbImg" OnClientClick="imgPop();return false" >
+                                <%--<asp:LinkButton runat="server" ID="lbImg" OnClientClick="return imgPop(this);" >
                                     <asp:Image runat="server" ID="imgContactPhotoPath" ClientIDMode="Static" ImageUrl='<%# Eval("ContactPhotoPath") %>' CommandArgument='<%# Eval("ContactPhotoPath") %>' Height="70" />
-                                </asp:LinkButton>
+                                </asp:LinkButton>--%>
+                                <asp:Image runat="server" ID="imgContactPhotoPath" ClientIDMode="Static" ImageUrl='<%# Eval("ContactPhotoPath") %>' onclick="window.open(this.src);" style="cursor:pointer;" CommandArgument='<%# Eval("ContactPhotoPath") %>' Height="70" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
@@ -47,7 +48,7 @@
                         <asp:BoundField DataField="FaceBookID" HeaderText="FaceBookID" />
                         <asp:BoundField DataField="LinkedInID" HeaderText="LinkedInID" />
                         <asp:BoundField DataField="CreationDate" HeaderText="Creation Date" />
-                        <asp:BoundField DataField="ModificationDate" HeaderText="Modification Date" />
+                        <%--<asp:BoundField DataField="ModificationDate" HeaderText="Modification Date" />--%>
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:Button runat="server" ID="btnDelete" Text="Delete" SkinID="delete" CommandName="deleteRecord" CommandArgument='<%# Eval("ContactID").ToString() %>' />
@@ -64,24 +65,29 @@
                 </div>
         </div>
     </div>
-    <script>
-        <%--var path = document.getElementById("imgContactPhotoPath").imageUrl;--%>
-        var path1 = document.getElementById("#imgContactPhotoPath");
-        console.log(path1);
-        function imgPop() {
-            //Swal.fire({
-            //    imageUrl: path1,
-            //    imageHeight: 500,
-            //    imageAlt: 'An image'
-            //})
-            Swal.fire({
-                title: 'Sweet!',
-                text: "",
-                imageUrl: 'https://unsplash.it/400/200',
-                imageWidth: 400,
-                imageHeight: 200,
-                imageAlt: 'Custom image',
-            })
+    <script type="text/javascript">
+        //var path = document.getElementById("<%# Eval("ContactPhotoPath") %>");
+        
+        //var path1 = document.getElementById("#imgContactPhotoPath");
+        //console.log(gv);
+        //if (gv.rows.length > 0) {
+
+        //}
+        function imgPop(pass) {
+            //console.log(path)
+        //    //Swal.fire({
+        //    //    imageUrl: path1,
+        //    //    imageHeight: 500,
+        //    //    imageAlt: 'An image'
+        //    //})
+        //    Swal.fire({
+        //        title: 'Sweet!',
+        //        text: "",
+        //        imageUrl: 'https://unsplash.it/400/200',
+        //        imageWidth: 400,
+        //        imageHeight: 200,
+        //        imageAlt: path1,
+        //    })
         }
     </script>
 </asp:Content>

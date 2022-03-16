@@ -64,7 +64,7 @@
 
             Toast.fire({
                 icon: 'success',
-                title: 'Loging in...<br>wait for few seconds'
+                title: 'Fetching Data...<br>wait for few seconds'
             })
         }
     </script>

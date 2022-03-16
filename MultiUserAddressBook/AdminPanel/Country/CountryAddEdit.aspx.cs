@@ -141,6 +141,7 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
                 #region Insert Record
                 objCmd.CommandText = "PR_Country_InsertUserID";
                 objCmd.ExecuteNonQuery();
+                lblMessage.Attributes.CssStyle.Add("color", "green");
                 lblMessage.Text = "Data Inserted...!";
                 txtCountryName.Text = "";
                 txtCountryCode.Text = "";

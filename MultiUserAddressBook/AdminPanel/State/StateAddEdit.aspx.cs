@@ -103,6 +103,7 @@ public partial class AdminPanel_City_CityAddEdit : System.Web.UI.Page
                 txtStateName.Text = "";
                 ddlCountryID.SelectedValue = "-1";
                 ddlCountryID.Focus();
+                lblMessage.Attributes.CssStyle.Add("color", "green");
                 lblMessage.Text = "Data Inserted...!";
                 #endregion Insert Record
             }

@@ -113,6 +113,7 @@ public partial class AdminPanel_City_CityList : System.Web.UI.Page
     #region Delete ContactCategory
     protected void DeleteContactCategory(SqlInt32 ContactCategoryID)
     {
+        
         SqlConnection objConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString);
         try
         {

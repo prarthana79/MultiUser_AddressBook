@@ -125,9 +125,11 @@
                 <div class="col-md-5 float-right ">
                 <asp:TextBox runat="server" placeHolder="Enter LinkedIn ID" ID="txtLinkedInID"></asp:TextBox>
             </div></div><br />
-            <div class="col-md-3 offset-1">
-                <asp:Button runat="server" ID="btnSubmit" Text="Save" OnClick="btnSubmit_Click" ValidationGroup="submitData"></asp:Button>
-                <asp:Button runat="server" ID="btnCancel" Text="Cancel" SkinID="Cancel" OnClick="btnCancel_Click"></asp:Button>
+            <div class="row text-center">
+                <div class="col-md-8">
+                    <asp:Button runat="server" ID="btnSubmit" Text="Save" OnClick="btnSubmit_Click" ValidationGroup="submitData"></asp:Button>
+                    <asp:Button runat="server" ID="btnCancel" Text="Cancel" SkinID="Cancel" OnClick="btnCancel_Click"></asp:Button>
+                </div>
             </div>
         </div></div>
 </asp:Content>

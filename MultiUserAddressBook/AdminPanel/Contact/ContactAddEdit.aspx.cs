@@ -440,7 +440,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                 cblContactCategory.ClearSelection();
                 ddlBloodGroup.SelectedValue = "-1";
                 #endregion Reset Data
-
+                lblMessage.Attributes.CssStyle.Add("color", "green");
                 lblMessage.Text = "Data Inserted...!";
 
                 #endregion Insert Record
