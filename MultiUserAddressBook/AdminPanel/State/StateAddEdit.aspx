@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid">
         <div class="row text-justify offset-1">
-            <p class="h3">State Add Edit :</p>
+            <p class="h3">State :</p>
             <asp:Label runat="server" ID="lblText" EnableViewState="false" />
         </div>
         <div class="row text-justify offset-1">

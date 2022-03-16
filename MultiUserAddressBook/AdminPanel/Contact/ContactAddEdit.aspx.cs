@@ -133,7 +133,8 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                      //Change Made
                     hfImagePath.Value = objSDR["ContactPhotoPath"].ToString();
                     imgUrl.EnableViewState = true;
-                    imgUrl.Height = 90;
+                    imgUrl.Height = 120;
+                    imgUrl.BorderWidth = 4;
                     imgUrl.ImageUrl = objSDR["ContactPhotoPath"].ToString();
 
                     break;
@@ -216,7 +217,7 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
 
         #region saveFile
         if (fuFile.HasFile)
-            {
+        {
                 // --------------------- Your Code --------------------------
                 // string fileExt = System.IO.Path.GetExtension(fuFile.FileName);
                 // if (fileExt == ".jpeg" || fileExt == ".jpg" || fileExt == ".png")
@@ -240,21 +241,23 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                 String FolderPath = "~/UserContent/";
                 String AbsolutePath = Server.MapPath(FolderPath);
                 // Time Stamp Is To Be Given Here
+                //String name = DateTime.Now.ToString("ddMMyyyyhhmmss") + fuFile.FileName.ToString().Trim() ;
+                //strContactImg = FolderPath + name;
                 strContactImg = FolderPath + fuFile.FileName.ToString().Trim();
                 #endregion Create FolderPath , AbsolutePath & ContactPhotoPath
 
                 #region Create Directory If Does Not Exists
                 if (!Directory.Exists(AbsolutePath))
-                {
-                    Directory.CreateDirectory(AbsolutePath);
-                }
-                #endregion Create Directory If Does Not Exists
+                    {
+                        Directory.CreateDirectory(AbsolutePath);
+                    }
+                    #endregion Create Directory If Does Not Exists
 
-                #region Save File
-                fuFile.SaveAs(AbsolutePath + fuFile.FileName.ToString().Trim());
-            //fuFile.PostedFile.InputStream.Dispose();
-                #endregion Save File
-        }    
+                    #region Save File
+                    fuFile.SaveAs(AbsolutePath + fuFile.FileName.ToString().Trim());
+                //fuFile.PostedFile.InputStream.Dispose();
+                    #endregion Save File
+            }    
         #endregion saveFile
         
         #region Gather Information

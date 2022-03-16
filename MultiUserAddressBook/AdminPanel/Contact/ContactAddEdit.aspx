@@ -5,7 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid h3">
         <div class="row text-justify offset-1">
-            <p class="h3">Contact Add Edit :</p>
+            <p class="h3">Contact :</p><br /><br />
+            <asp:Image runat="server" CssClass="m-3 mt-5" ID="imgUrl" EnableViewState="false" />
             <asp:Label runat="server" ID="lblText" EnableViewState="false" />
         </div>
         <div class="row text-justify offset-1">
@@ -57,7 +58,7 @@
                 <div class="col-md-5 float-right ">
                 <asp:FileUpload runat="server" ID="fuFile" />
                 <asp:HiddenField ID="hfImagePath" runat="server" />
-                <asp:Image runat="server" ID="imgUrl" EnableViewState="false" />
+                
             </div></div><br />
             <div class="row"><span>* </span>
                 <div class="col-md-4">
