@@ -243,7 +243,8 @@ public partial class AdminPanel_Contact_Contact : System.Web.UI.Page
         {
             if (e.CommandArgument.ToString() != "")
             {
-                DeleteFile(Convert.ToInt32(e.CommandArgument.ToString().Trim()));   
+                DeleteFile(Convert.ToInt32(e.CommandArgument.ToString().Trim()));
+                //return;
                 DeleteRecordOfContactWiseContactCategory(Convert.ToInt32(e.CommandArgument.ToString().Trim()));
                 DeleteContact(Convert.ToInt32(e.CommandArgument.ToString().Trim()));
                 //Try Deleting The Photo File From Here As CommandArgument Has The ContactID...

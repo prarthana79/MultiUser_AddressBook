@@ -20,10 +20,14 @@
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <%--<asp:LinkButton runat="server" ID="lbImg" OnClientClick="return imgPop(this);" >
+                                <%--<asp:LinkButton runat="server" ID="lbImg" OnClientClick="imgPop(this); return false" >
                                     <asp:Image runat="server" ID="imgContactPhotoPath" ClientIDMode="Static" ImageUrl='<%# Eval("ContactPhotoPath") %>' CommandArgument='<%# Eval("ContactPhotoPath") %>' Height="70" />
                                 </asp:LinkButton>--%>
-                                <asp:Image runat="server" ID="imgContactPhotoPath" ClientIDMode="Static" ImageUrl='<%# Eval("ContactPhotoPath") %>' onclick="window.open(this.src);" style="cursor:pointer;" CommandArgument='<%# Eval("ContactPhotoPath") %>' Height="70" />
+                                <asp:HyperLink runat="server" NavigateUrl='<%# Eval("ContactPhotoPath") %>' data-lightbox="image-1" data-title="My caption">
+                                <asp:Image runat="server" ID="imgContactPhotoPath" ClientIDMode="Static" ImageUrl='<%# Eval("ContactPhotoPath") %>' style="cursor:pointer;" CommandArgument='<%# Eval("ContactPhotoPath") %>' Height="70" />
+                                    </asp:HyperLink>
+                                 <%--onclick="window.open(this.src);"--%>
+                                <%--<asp:Image runat="server" ID="Image1" ImageUrl='<%# Eval("ContactPhotoPath") %>' CommandArgument='<%# Eval("ContactPhotoPath") %>' Height="70" />--%>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
@@ -67,7 +71,8 @@
     </div>
     <script type="text/javascript">
         //var path = document.getElementById("<%# Eval("ContactPhotoPath") %>");
-        
+        <%--var path1 = document.getElementById('# <%= imgContactPhotoPath.ClientID %>');--%>
+        //var path1 = document.getElementById("#imgContactPhotoPath").text;
         //var path1 = document.getElementById("#imgContactPhotoPath");
         //console.log(gv);
         //if (gv.rows.length > 0) {
@@ -75,18 +80,18 @@
         //}
         function imgPop(pass) {
             //console.log(path)
-        //    //Swal.fire({
-        //    //    imageUrl: path1,
-        //    //    imageHeight: 500,
-        //    //    imageAlt: 'An image'
-        //    //})
-        //    Swal.fire({
-        //        title: 'Sweet!',
-        //        text: "",
-        //        imageUrl: 'https://unsplash.it/400/200',
-        //        imageWidth: 400,
-        //        imageHeight: 200,
-        //        imageAlt: path1,
+            //Swal.fire({
+            //    imageUrl: path1,
+            //    imageHeight: 500,
+            //    imageAlt: 'An image'
+            //})
+            //Swal.fire({
+            //    title: 'Sweet!',
+            //    text: "",
+            //    imageUrl: 'https://unsplash.it/400/200',
+            //    imageWidth: 400,
+            //    imageHeight: 200,
+            //    imageAlt: path1,
         //    })
         }
     </script>

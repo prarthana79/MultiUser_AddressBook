@@ -136,6 +136,8 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                     imgUrl.Height = 120;
                     imgUrl.BorderWidth = 4;
                     imgUrl.ImageUrl = objSDR["ContactPhotoPath"].ToString();
+                    lblContactName.EnableViewState = true;
+                    lblContactName.Text = objSDR["ContactName"].ToString().Trim();
 
                     break;
                 }

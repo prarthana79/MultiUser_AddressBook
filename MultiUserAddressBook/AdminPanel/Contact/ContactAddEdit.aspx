@@ -5,11 +5,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid h3">
         <div class="row text-justify offset-1">
-            <p class="h3">Contact :</p><br /><br />
-            <asp:Image runat="server" CssClass="m-3 mt-5" ID="imgUrl" EnableViewState="false" />
+            <p class="h3">Contact :</p>
             <asp:Label runat="server" ID="lblText" EnableViewState="false" />
         </div>
         <div class="row text-justify offset-1">
+            <div class="offset-1">
+                <asp:Image runat="server" CssClass="m-3 mt-5" ID="imgUrl" EnableViewState="false" />
+                <asp:Label runat="server" CssClass="offset-1" EnableViewState="false" ID="lblContactName" ForeColor="Black" />
+            </div>
+            
             <asp:Label runat="server" ID="lblMessage" EnableViewState="false"></asp:Label>
         </div>
         <div class="offset-3 h2 text-monospace">
