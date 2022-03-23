@@ -137,7 +137,8 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                     imgUrl.BorderWidth = 4;
                     imgUrl.ImageUrl = objSDR["ContactPhotoPath"].ToString();
                     lblContactName.EnableViewState = true;
-                    lblContactName.Text = objSDR["ContactName"].ToString().Trim();
+                    lblContactName.Text = "<br/>&nbsp;&nbsp;&nbsp;" + objSDR["ContactName"].ToString().Trim()+"<br/>";
+                    lblContactName.ForeColor = System.Drawing.Color.DarkSlateBlue;
 
                     break;
                 }
@@ -255,10 +256,10 @@ public partial class AdminPanel_Contact_ContactAddEdit : System.Web.UI.Page
                     }
                     #endregion Create Directory If Does Not Exists
 
-                    #region Save File
+                    #region Save File To Directory
                     fuFile.SaveAs(AbsolutePath + fuFile.FileName.ToString().Trim());
                 //fuFile.PostedFile.InputStream.Dispose();
-                    #endregion Save File
+                    #endregion Save File To Directory
             }    
         #endregion saveFile
         

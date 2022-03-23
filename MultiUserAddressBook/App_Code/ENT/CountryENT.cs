@@ -5,12 +5,19 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for CountryENTBase
+/// Summary description for CountryENT
 /// </summary>
 namespace AddressBook.ENT
 {
-    public abstract class CountryENT
+    public class CountryENT
     {
+        #region Constructor
+        public CountryENT()
+        {
+
+        }
+        #endregion Constructor
+
         #region declare CountryID
         protected SqlInt32 _CountryID;
         public SqlInt32 CountryID

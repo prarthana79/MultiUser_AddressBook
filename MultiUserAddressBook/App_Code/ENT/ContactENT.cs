@@ -5,12 +5,19 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for ContactENTBase
+/// Summary description for ContactENT
 /// </summary>
 namespace AddressBook.ENT
 {
     public abstract class ContactENT
     {
+        #region Constructor
+        public ContactENT()
+        {
+
+        }
+        #endregion Constructor
+
         #region declare ContactID
         protected SqlInt32 _ContactID;
         public SqlInt32 ContactID

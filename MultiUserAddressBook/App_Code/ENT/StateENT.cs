@@ -5,12 +5,19 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for StateENTBase
+/// Summary description for StateENT
 /// </summary>
 namespace AddressBook.ENT
 {
     public abstract class StateENT
     {
+        #region Constructor
+        public StateENT()
+        {
+
+        }
+        #endregion Constructor
+
         #region declare StateID
         protected SqlInt32 _StateID;
         public SqlInt32 StateID

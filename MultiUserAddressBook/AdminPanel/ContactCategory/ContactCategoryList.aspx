@@ -24,7 +24,7 @@
                         <%--<asp:BoundField DataField="ModificationDate" HeaderText="Modification Date" />--%>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Button runat="server" ID="btnDelete" Text="Delete" SkinID="delete" CommandName="deleteRecord" CommandArgument='<%# Eval("ContactCategoryID").ToString() %>' />
+                                <asp:Button runat="server" ID="btnDelete" Text="Delete" SkinID="delete" OnClientClick="return confirm('Are you sure you want to delete?')" CommandName="deleteRecord" CommandArgument='<%# Eval("ContactCategoryID").ToString() %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
@@ -38,6 +38,31 @@
             </div>
         </div>
         <script>
+            $(function ans() {
+                //OnClientClick="return confirm('Are you sure you want to delete?')"
+            //    $("#dialog-confirm").dialog({
+            //        resizable: false,
+            //        height: "auto",
+            //        width: 400,
+            //        modal: true,
+            //        buttons: {
+            //            "Delete all items": function () {
+            //                $(this).dialog("close");
+            //            },
+            //            Cancel: function () {
+            //                $(this).dialog("close");
+            //            }
+            //        }
+            //    });
+            //});
+            //    $("#btnDelete").dialog({
+            //        buttons: {
+            //            "Yes": return true {},
+            //        "No": return false { }
+            //    }
+            //})
+        </script>
+        <%--<script>
             //OnClientClick = "deleteConfirmation(); return false"
             function deleteConfirmation() {
                 Swal.fire({
@@ -84,7 +109,7 @@
                 //    }
                 //})
             //}
-        </script>
+        </script>--%>
     </div>
 </asp:Content>
 

@@ -6,9 +6,11 @@
 <head runat="server">
     <title>AddressBook</title>
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="js/jquery-3.6.0.min.js" />
+    <%--<link rel="stylesheet" href="js/jquery-3.6.0.min.js" />--%>
     <script src="~/Content/js/jquery-3.6.0.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <style>
         body{
             background-color:#C3CAD2;

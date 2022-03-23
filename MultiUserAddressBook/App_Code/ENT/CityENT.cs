@@ -5,12 +5,19 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for CityENTBase
+/// Summary description for CityENT
 /// </summary>
 namespace AddressBook.ENT
 {
     public class CityENT
     {
+        #region Constructor
+        public CityENT()
+        {
+
+        }
+        #endregion Constructor
+
         #region declare CityID
         protected SqlInt32 _CityID;
         public SqlInt32 CityID
